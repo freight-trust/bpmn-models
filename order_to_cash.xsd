@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="process">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="documentation" type="xs:string" />
+              <xs:element name="startEvent">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="outgoing" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="id" use="required" />
+                  <xs:attribute name="name" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="sequenceFlow" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0">
+                    <xs:element name="conditionExpression" minOccurs="0" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="id" type="xs:ID" use="required" />
+                  <xs:attribute name="sourceRef" use="required" />
+                  <xs:attribute name="targetRef" use="required" />
+                  <xs:attribute name="name" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="userTask" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="documentation" type="xs:string" />
+                    <xs:element name="incoming" type="xs:string" />
+                    <xs:element name="outgoing" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="id" use="required" />
+                  <xs:attribute name="name" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="exclusiveGateway">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="incoming" type="xs:string" />
+                    <xs:element name="outgoing" maxOccurs="unbounded" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="id" use="required" />
+                  <xs:attribute name="name" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="endEvent" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="incoming" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="id" use="required" />
+                  <xs:attribute name="name" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="callActivity" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="incoming" type="xs:string" />
+                    <xs:element name="outgoing" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="id" use="required" />
+                  <xs:attribute name="name" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="parallelGateway" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="incoming" maxOccurs="unbounded" type="xs:string" />
+                    <xs:element name="outgoing" maxOccurs="unbounded" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="id" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" use="required" />
+            <xs:attribute name="name" use="required" />
+            <xs:attribute name="isExecutable" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BPMNDiagram">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BPMNPlane">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="BPMNEdge" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="waypoint" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="x" type="xs:integer" use="required" />
+                              <xs:attribute name="y" type="xs:integer" use="required" />
+															<xs:attribute name="waypoint" use="required" >
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:enumeration value="121" />
+                                    <xs:enumeration value="146" />
+                                    <xs:enumeration value="171" />
+                                    <xs:enumeration value="200" />
+                                    <xs:enumeration value="228" />
+                                    <xs:enumeration value="95" />
+                                  </xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="BPMNLabel">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Bounds">
+                                  <xs:complexType>
+                                    <xs:attribute name="x" type="xs:integer" use="required" />
+                                    <xs:attribute name="y" type="xs:integer" use="required" />
+                                    <xs:attribute name="width" use="required">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:enumeration value="0" />
+                                          <xs:enumeration value="14" />
+                                          <xs:enumeration value="18" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="height"  use="required">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:enumeration value="0" />
+                                          <xs:enumeration value="12" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:attribute>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:ID" use="required" />
+                        <xs:attribute name="bpmnElement" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="BPMNShape" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Bounds">
+                            <xs:complexType>
+                              <xs:attribute name="x" type="xs:integer" use="required" />
+                              <xs:attribute name="y" type="xs:integer" use="required" />
+                              <xs:attribute name="width" use="required">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:enumeration value="100" />
+                                    <xs:enumeration value="36" />
+                                    <xs:enumeration value="50" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="height" use="required">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:enumeration value="36" />
+                                    <xs:enumeration value="50" />
+                                    <xs:enumeration value="80" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="BPMNLabel" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Bounds">
+                                  <xs:complexType>
+                                    <xs:attribute name="x" type="xs:integer" use="required" />
+                                    <xs:attribute name="y" type="xs:integer" use="required" />
+                                    <xs:attribute name="width" type="xs:integer" use="required" />
+                                    <xs:attribute name="height" type="xs:integer" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:ID" use="required" />
+                        <xs:attribute name="bpmnElement" use="required" />
+                        <xs:attribute name="isMarkerVisible" type="xs:boolean" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="id" use="required" />
+                  <xs:attribute name="bpmnElement" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" />
+      <xs:attribute name="targetNamespace" use="required" />
+      <xs:attribute name="exporter" use="required" />
+      <xs:attribute name="exporterVersion" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

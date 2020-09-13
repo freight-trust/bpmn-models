@@ -1,0 +1,49 @@
+<!ELEMENT definitions (process,BPMNDiagram)>
+<!ATTLIST definitions id NMTOKEN #REQUIRED>
+<!ATTLIST definitions targetNamespace CDATA #REQUIRED>
+<!ATTLIST definitions exporter CDATA #REQUIRED>
+<!ATTLIST definitions exporterVersion NMTOKEN #REQUIRED>
+<!ELEMENT process (documentation,startEvent,sequenceFlow+,userTask+,exclusiveGateway,endEvent+,callActivity+,parallelGateway+)>
+<!ATTLIST process id NMTOKEN #REQUIRED>
+<!ATTLIST process name NMTOKEN #REQUIRED>
+<!ATTLIST process isExecutable NMTOKEN #REQUIRED>
+<!ELEMENT documentation (#PCDATA)>
+<!ELEMENT startEvent (outgoing)>
+<!ATTLIST startEvent id NMTOKEN #REQUIRED>
+<!ATTLIST startEvent name CDATA #REQUIRED>
+<!ELEMENT outgoing (#PCDATA)>
+<!ELEMENT sequenceFlow (conditionExpression?)>
+<!ATTLIST sequenceFlow id ID #REQUIRED>
+<!ATTLIST sequenceFlow sourceRef NMTOKEN #REQUIRED>
+<!ATTLIST sequenceFlow targetRef NMTOKEN #REQUIRED>
+<!ATTLIST sequenceFlow name NMTOKEN #IMPLIED>
+<!ELEMENT userTask (documentation,incoming,outgoing)>
+<!ATTLIST userTask id NMTOKEN #REQUIRED>
+<!ATTLIST userTask name CDATA #REQUIRED>
+<!ELEMENT incoming (#PCDATA)>
+<!ELEMENT exclusiveGateway (incoming,outgoing+)>
+<!ATTLIST exclusiveGateway id NMTOKEN #REQUIRED>
+<!ATTLIST exclusiveGateway name CDATA #REQUIRED>
+<!ELEMENT endEvent (incoming)>
+<!ATTLIST endEvent id NMTOKEN #REQUIRED>
+<!ATTLIST endEvent name CDATA #REQUIRED>
+<!ELEMENT conditionExpression (#PCDATA)>
+<!ELEMENT callActivity (incoming,outgoing)>
+<!ATTLIST callActivity id NMTOKEN #REQUIRED>
+<!ATTLIST callActivity name CDATA #REQUIRED>
+<!ELEMENT parallelGateway (incoming+,outgoing+)>
+<!ATTLIST parallelGateway id NMTOKEN #REQUIRED>
+<!ELEMENT BPMNDiagram (BPMNPlane)>
+<!ATTLIST BPMNDiagram id NMTOKEN #REQUIRED>
+<!ELEMENT BPMNPlane (BPMNEdge+,BPMNShape+)>
+<!ATTLIST BPMNPlane id NMTOKEN #REQUIRED>
+<!ATTLIST BPMNPlane bpmnElement NMTOKEN #REQUIRED>
+<!ELEMENT BPMNEdge (waypoint+,BPMNLabel)>
+<!ATTLIST BPMNEdge id ID #REQUIRED>
+<!ATTLIST BPMNEdge bpmnElement NMTOKEN #REQUIRED>
+<!ELEMENT waypoint EMPTY>
+<!ATTLIST waypoint x NMTOKEN #REQUIRED>
+<!ATTLIST waypoint y (121|146|171|200|228|95) #REQUIRED><!ELEMENT BPMNLabel (Bounds)><!ELEMENT Bounds EMPTY><!ATTLIST Bounds x NMTOKEN #REQUIRED><!ATTLIST Bounds y NMTOKEN #REQUIRED><!ATTLIST Bounds width NMTOKEN #REQUIRED><!ATTLIST Bounds height (0|12|36|50|80) #REQUIRED><!ELEMENT BPMNShape (Bounds,BPMNLabel?)>
+<!ATTLIST BPMNShape id ID #REQUIRED>
+<!ATTLIST BPMNShape bpmnElement NMTOKEN #REQUIRED>
+<!ATTLIST BPMNShape isMarkerVisible NMTOKEN #IMPLIED>
