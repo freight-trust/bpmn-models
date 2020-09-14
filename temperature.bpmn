@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0coqjsr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.16.2">
+  <bpmn:process id="temperature" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="start">
+      <bpmn:outgoing>SequenceFlow_1y1jjo7</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Task_1cngefl" name="measure temperature" camunda:type="external" camunda:topic="measureTemperature">
+      <bpmn:incoming>SequenceFlow_1y1jjo7</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0p5nqrc</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:businessRuleTask id="Task_12qaevo" name="categorize temperature" camunda:resultVariable="category" camunda:decisionRef="temperatureCategorizationDecision" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>SequenceFlow_0p5nqrc</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0vnkm9w</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0vnkm9w" sourceRef="Task_12qaevo" targetRef="Task_0jr1bh9" />
+    <bpmn:serviceTask id="Task_0jr1bh9" name="report category" camunda:type="external" camunda:topic="reportCategory">
+      <bpmn:incoming>SequenceFlow_0vnkm9w</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ecuiwd</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_0236h4c" name="end">
+      <bpmn:incoming>SequenceFlow_0ecuiwd</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0ecuiwd" sourceRef="Task_0jr1bh9" targetRef="EndEvent_0236h4c" />
+    <bpmn:sequenceFlow id="SequenceFlow_1y1jjo7" sourceRef="StartEvent_1" targetRef="Task_1cngefl" />
+    <bpmn:sequenceFlow id="SequenceFlow_0p5nqrc" sourceRef="Task_1cngefl" targetRef="Task_12qaevo" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="temperature">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="255" y="114" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="262" y="157" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_01reho9_di" bpmnElement="Task_1cngefl">
+        <dc:Bounds x="372" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BusinessRuleTask_0djkufb_di" bpmnElement="Task_12qaevo">
+        <dc:Bounds x="553" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0vnkm9w_di" bpmnElement="SequenceFlow_0vnkm9w">
+        <di:waypoint x="653" y="132" />
+        <di:waypoint x="712" y="132" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1jscqwm_di" bpmnElement="Task_0jr1bh9">
+        <dc:Bounds x="712" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0236h4c_di" bpmnElement="EndEvent_0236h4c">
+        <dc:Bounds x="907" y="114" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="916" y="157" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ecuiwd_di" bpmnElement="SequenceFlow_0ecuiwd">
+        <di:waypoint x="812" y="132" />
+        <di:waypoint x="907" y="132" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1y1jjo7_di" bpmnElement="SequenceFlow_1y1jjo7">
+        <di:waypoint x="291" y="132" />
+        <di:waypoint x="372" y="132" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0p5nqrc_di" bpmnElement="SequenceFlow_0p5nqrc">
+        <di:waypoint x="472" y="132" />
+        <di:waypoint x="553" y="132" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
