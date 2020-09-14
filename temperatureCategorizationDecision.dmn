@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_0078iio" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="temperatureCategorizationDecision" name="Temperatures">
+    <decisionTable id="decisionTable_1">
+      <input id="input_1">
+        <inputExpression id="inputExpression_1" typeRef="double">
+          <text>temperature</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" name="category" typeRef="string" />
+      <rule id="DecisionRule_0v3xjow">
+        <inputEntry id="UnaryTests_0fhhlzw">
+          <text>0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0l4p2cv">
+          <text>"freezing"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0we0xz3">
+        <inputEntry id="UnaryTests_05ftkzp">
+          <text>&lt;=0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_13ov777">
+          <text>"below freezing"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_196rurq">
+        <inputEntry id="UnaryTests_10p5u5g">
+          <text>[1..12]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04jjlgo">
+          <text>"cold"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_122hycn">
+        <inputEntry id="UnaryTests_0ykxc1t">
+          <text>[13..18]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0orn8kh">
+          <text>"average"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0tkmg8z">
+        <inputEntry id="UnaryTests_0z756a0">
+          <text>[18..22]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dz6vet">
+          <text>"room temperature"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tx13wj">
+        <inputEntry id="UnaryTests_1rajuvp">
+          <text>[23..27]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01z2bmp">
+          <text>"warm"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02ac930">
+        <inputEntry id="UnaryTests_0s6rs2e">
+          <text>[28..32]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14p485h">
+          <text>"hot"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1c5epe8">
+        <inputEntry id="UnaryTests_0e1hqm5">
+          <text>&gt;=32</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dnouah">
+          <text>"extreme hot"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
